@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haru - Design Challenge Presentation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Panel: Presentation / Deliverables -->
+        <main class="presentation-panel">
+            <header class="presentation-header">
+                <div class="brand">
+                    <span class="brand-dot"></span>
+                    <span class="brand-name">HARU</span>
+                    <span class="badge">Design Challenge</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <a href="print_presentation.html?print=true" target="_blank" class="btn btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; height: 32px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; color: white;">
+                        <i class="fa-solid fa-file-pdf"></i> Export PDF
+                    </a>
+                    <div class="time-tracker" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; height: 32px; display: flex; align-items: center;">
+                        <i class="fa-regular fa-clock"></i>
+                        <span style="margin-left: 0.35rem;">20 min</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="slide-container">
+                <!-- Slide 1: Welcome (Active by default) -->
+                <section class="slide active" id="slide-1">
+                    <span class="slide-category">Redesign Proposal</span>
+                    <h1 class="slide-title">Haru: Finance with Purpose and Zero Friction</h1>
+                    <p class="slide-lead">Transforming raw numbers into intelligent decisions through automation and emotional support for the Ecuadorian market.</p>
+                    
+                    <div class="grid-2-col pt-4">
+                        <div class="info-card">
+                            <h3>The Challenge</h3>
+                            <p>Help users understand their money without the friction of manual categorization and with truly actionable insights.</p>
+                        </div>
+                        <div class="info-card highlight">
+                            <h3>Our Vision</h3>
+                            <p>An app that doesn't feel like a ledger, but rather like an empathetic and intuitive financial copilot.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 2: Understanding & Empathy -->
+                <section class="slide" id="slide-2">
+                    <span class="slide-category">Context & Reasoning</span>
+                    <h1 class="slide-title">What do we understand about Haru's users?</h1>
+                    <p class="slide-lead">We analyzed the friction points detected in the initial research and proposed clear design hypotheses.</p>
+
+                    <div class="pain-solution-table">
+                        <div class="table-row header">
+                            <div>User Pain Point</div>
+                            <div>Hypothesis of Solution in Haru</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="pain-cell">
+                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                <span>"I struggle to understand where my money goes each month."</span>
+                            </div>
+                            <div class="solution-cell">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span><strong>Contextual Visualization:</strong> Clear visual grouping and narrative summaries (e.g. "You are doing 10% better than last week").</span>
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="pain-cell">
+                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                <span>"I don't have the time or desire to manually categorize expenses."</span>
+                            </div>
+                            <div class="solution-cell">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span><strong>Auto-Categorization with Express Confirmation:</strong> The app does it for you and validates with simple 1-tap interactions.</span>
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="pain-cell">
+                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                <span>"I don't feel the app gives me useful insights, just numbers."</span>
+                            </div>
+                            <div class="solution-cell">
+                                <i class="fa-solid fa-circle-check text-success"></i>
+                                <span><strong>Financial Health Indicator & AI Copilot:</strong> Empathetic comments explaining what to do (e.g. "If you save $15 on entertainment, you will reach your goal").</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3: Lateral Thinking -->
+                <section class="slide" id="slide-3">
+                    <span class="slide-category">Lateral Thinking</span>
+                    <h1 class="slide-title">Questioning the Financial Status Quo</h1>
+                    <p class="slide-lead">Do users really need perfect pie charts and tedious manual bookkeeping?</p>
+                    
+                    <div class="insight-banner">
+                        <div class="banner-icon">💡</div>
+                        <div class="banner-content">
+                            <strong>Our Lateral Hypothesis:</strong> The user does not want to be an accountant. They want peace of mind. Categorization is not the end goal, it is just the tool. By automating 95% of the mental load and providing direct answers about daily spending power, we eliminate app churn.
+                        </div>
+                    </div>
+
+                    <div class="grid-3-col mt-4">
+                        <div class="stat-card">
+                            <div class="stat-num">95%</div>
+                            <div class="stat-label">Predictive auto-categorization optimized for Ecuadorian merchants.</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num">1-Tap</div>
+                            <div class="stat-label">Intuitive feedback loop to correct errors without friction.</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num">Narrative</div>
+                            <div class="stat-label">Replacing abstract charts with readable, actionable sentences.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4: Simplified Journey -->
+                <section class="slide" id="slide-4">
+                    <span class="slide-category">User Journey & Flow</span>
+                    <h1 class="slide-title">Friction-Free Flow</h1>
+                    <p class="slide-lead">How the user reaches their diagnostic summary and takes steps to adjust their spending with zero effort.</p>
+
+                    <div class="journey-flow">
+                        <div class="journey-step">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>Smart Notification</h4>
+                                <p>The app detects a transaction and auto-categorizes it in the background.</p>
+                            </div>
+                        </div>
+                        <div class="journey-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                        <div class="journey-step">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>Express Validation</h4>
+                                <p>The user confirms with a tap, or the app silently assumes it's correct over time.</p>
+                            </div>
+                        </div>
+                        <div class="journey-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                        <div class="journey-step">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>Health Feedback</h4>
+                                <p>The dashboard updates dynamically, showing progress towards the savings target.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 5: Design Decisions -->
+                <section class="slide" id="slide-5">
+                    <span class="slide-category">UX/UI Decisions</span>
+                    <h1 class="slide-title">Emotional & Functional Aesthetics</h1>
+                    <p class="slide-lead">We aim to project financial security through a modern, clean, and motivating interface.</p>
+
+                    <div class="grid-2-col">
+                        <div class="design-decision-card">
+                            <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
+                            <h3>UI Decisions</h3>
+                            <ul>
+                                <li><strong>Trust Palette:</strong> Deep purples, emerald greens for growth, and subtle accents for warnings.</li>
+                                <li><strong>Micro-animations:</strong> Smooth feedback animations on verification buttons to build satisfaction.</li>
+                                <li><strong>Information Cards:</strong> Glassmorphism layouts to add visual hierarchy and modern depth.</li>
+                            </ul>
+                        </div>
+                        <div class="design-decision-card">
+                            <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                            <h3>UX Decisions</h3>
+                            <ul>
+                                <li><strong>Human Language:</strong> Translating cold figures to everyday milestones ("You have enough to go out this weekend!").</li>
+                                <li><strong>Focus on Free Margin:</strong> Highlighting free money after fixed expenses and savings goals to reduce financial anxiety.</li>
+                                <li><strong>Asynchronous Batching:</strong> Allowing incorrect categorizations to be fixed in batches whenever the user wishes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Presentation Controls -->
+            <footer class="presentation-footer">
+                <div class="slide-indicator">
+                    Slide <span id="current-slide">1</span> of 5
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prev-slide-btn" disabled>
+                        <i class="fa-solid fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn btn-primary" id="next-slide-btn">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </footer>
+        </main>
+
+        <!-- Right Panel: Interactive Mobile Mockup -->
+        <aside class="prototype-panel">
+            <div class="device-wrapper">
+                <div class="device-notch"></div>
+                <div class="device-screen">
+                    <!-- App Haru Header -->
+                    <header class="app-header">
+                        <div class="user-profile">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Avatar" class="avatar">
+                            <div>
+                                <span class="app-greeting">Hello, Renato</span>
+                                <h3 class="app-status">✨ Everything is okay</h3>
+                            </div>
+                        </div>
+                        <button class="app-notif-btn">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="notif-badge"></span>
+                        </button>
+                    </header>
+
+                    <!-- App Content -->
+                    <div class="app-scroll-content">
+                        <!-- Balance Card -->
+                        <div class="balance-card">
+                            <div class="balance-header">
+                                <span>Monthly Income</span>
+                                <span class="balance-month">July 2026</span>
+                            </div>
+                            <h2 class="balance-amount">$1,200.00</h2>
+                            <div class="balance-stats">
+                                <div class="stat">
+                                    <span class="stat-title">Spent</span>
+                                    <span class="stat-val text-orange" id="total-spent-display">$950.00</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-title">Free Margin</span>
+                                    <span class="stat-val text-green" id="free-margin-display">$250.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Savings Goal Widget -->
+                        <div class="goal-widget">
+                            <div class="goal-info">
+                                <div>
+                                    <h4 class="goal-title">Goal: Save this month</h4>
+                                    <p class="goal-subtitle">Projected savings: <strong class="text-green" id="projected-savings-val">$250</strong></p>
+                                </div>
+                                <span class="goal-badge success">Goal Met!</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="savings-progress-bar" style="width: 100%;"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span>Target: $100</span>
+                                <span class="text-green" id="savings-percent-text">250%</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Insights Banner -->
+                        <div class="insight-widget" id="dynamic-insight-box">
+                            <div class="insight-icon">💬</div>
+                            <div class="insight-text-wrapper">
+                                <h4>Haru Insight</h4>
+                                <p id="insight-paragraph">Select a spending category below to get an intelligent, instant analysis of your finances.</p>
+                            </div>
+                        </div>
+
+                        <!-- Auto-Categorization Prompt (Zero Friction) -->
+                        <div class="auto-cat-widget" id="auto-cat-card">
+                            <div class="widget-header">
+                                <span class="badge-new">NEW SPENDING DETECTED</span>
+                                <button class="close-widget-btn" onclick="dismissAutoCat()"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <p class="transaction-detail">You spent <strong>$35.00</strong> at <strong>Supermaxi</strong></p>
+                            <p class="transaction-suggestion">Categorized automatically as <span class="cat-pill alimentacion"><i class="fa-solid fa-utensils"></i> Food</span></p>
+                            <div class="action-buttons">
+                                <button class="btn-action approve" onclick="approveAutoCat()"><i class="fa-solid fa-check"></i> It's Correct</button>
+                                <button class="btn-action edit" onclick="openCatSelector()"><i class="fa-solid fa-pen"></i> Change</button>
+                            </div>
+                        </div>
+
+                        <!-- Expenses Section -->
+                        <div class="expenses-section">
+                            <div class="section-header">
+                                <h3>Expenses by Category</h3>
+                                <span class="section-link">See all</span>
+                            </div>
+
+                            <!-- List of Interactive Categories -->
+                            <div class="category-list">
+                                <div class="category-item" onclick="selectCategory('alimentacion', 300)" id="cat-alimentacion">
+                                    <div class="cat-left">
+                                        <div class="cat-icon alimentacion"><i class="fa-solid fa-utensils"></i></div>
+                                        <div>
+                                            <h4 class="cat-name">Food</h4>
+                                            <span class="cat-percentage">31.6% of total</span>
+                                        </div>
+                                    </div>
+                                    <div class="cat-right">
+                                        <span class="cat-amount">$300.00</span>
+                                        <i class="fa-solid fa-chevron-right item-arrow"></i>
+                                    </div>
+                                </div>
+
+                                <div class="category-item" onclick="selectCategory('transporte', 150)" id="cat-transporte">
+                                    <div class="cat-left">
+                                        <div class="cat-icon transporte"><i class="fa-solid fa-car"></i></div>
+                                        <div>
+                                            <h4 class="cat-name">Transport</h4>
+                                            <span class="cat-percentage">15.8% of total</span>
+                                        </div>
+                                    </div>
+                                    <div class="cat-right">
+                                        <span class="cat-amount">$150.00</span>
+                                        <i class="fa-solid fa-chevron-right item-arrow"></i>
+                                    </div>
+                                </div>
+
+                                <div class="category-item" onclick="selectCategory('entretenimiento', 200)" id="cat-entretenimiento">
+                                    <div class="cat-left">
+                                        <div class="cat-icon entretenimiento"><i class="fa-solid fa-gamepad"></i></div>
+                                        <div>
+                                            <h4 class="cat-name">Entertainment</h4>
+                                            <span class="cat-percentage">21.1% of total</span>
+                                        </div>
+                                    </div>
+                                    <div class="cat-right">
+                                        <span class="cat-amount">$200.00</span>
+                                        <i class="fa-solid fa-chevron-right item-arrow"></i>
+                                    </div>
+                                </div>
+
+                                <div class="category-item" onclick="selectCategory('otros', 300)" id="cat-otros">
+                                    <div class="cat-left">
+                                        <div class="cat-icon otros"><i class="fa-solid fa-ellipsis"></i></div>
+                                        <div>
+                                            <h4 class="cat-name">Others</h4>
+                                            <span class="cat-percentage">31.6% of total</span>
+                                        </div>
+                                    </div>
+                                    <div class="cat-right">
+                                        <span class="cat-amount">$300.00</span>
+                                        <i class="fa-solid fa-chevron-right item-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App Navigation Bar -->
+                    <nav class="app-navbar">
+                        <button class="nav-item active"><i class="fa-solid fa-chart-pie"></i><span>Summary</span></button>
+                        <button class="nav-item" onclick="alert('Connected accounts in development')"><i class="fa-solid fa-wallet"></i><span>Accounts</span></button>
+                        <button class="nav-item" onclick="alert('Savings and Goals section in development')"><i class="fa-solid fa-bullseye"></i><span>Goals</span></button>
+                        <button class="nav-item" onclick="alert('Settings in development')"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
+                    </nav>
+                </div>
+            </div>
+            <div class="prototype-instructions">
+                <p><i class="fa-solid fa-hand-pointer"></i> <strong>Interact with the prototype:</strong> Click on the categories or validate the auto-detected transaction.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Category Changer Modal (for Prototype interaction) -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <h3>Re-categorize Transaction</h3>
+            <p>Select the correct category for the $35.00 expense at <strong>Supermaxi</strong>:</p>
+            <div class="modal-options">
+                <button onclick="changeCatTo('alimentacion')" class="modal-opt"><i class="fa-solid fa-utensils"></i> Food</button>
+                <button onclick="changeCatTo('transporte')" class="modal-opt"><i class="fa-solid fa-car"></i> Transport</button>
+                <button onclick="changeCatTo('entretenimiento')" class="modal-opt"><i class="fa-solid fa-gamepad"></i> Entertainment</button>
+                <button onclick="changeCatTo('otros')" class="modal-opt"><i class="fa-solid fa-ellipsis"></i> Others</button>
+            </div>
+            <button class="btn btn-secondary mt-4 w-100" onclick="closeCatSelector()">Cancel</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

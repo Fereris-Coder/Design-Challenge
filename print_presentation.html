@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haru - Design Challenge PDF Export</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --text-main: #121124;
+            --text-muted: #4A4968;
+            --primary: #6D3BFF;
+            --border-color: rgba(109, 59, 255, 0.2);
+            --card-bg: #F8F7FC;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            font-size: 11pt;
+            padding: 0;
+        }
+
+        /* Container & Print Page Setup */
+        .print-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+
+        .brand-name {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 16pt;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .brand-badge {
+            background: rgba(109, 59, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .print-instructions {
+            background: #FFF9C4;
+            border: 1px solid #FBC02D;
+            color: #5D4037;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 10pt;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .print-instructions button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 9pt;
+            margin-left: auto;
+            transition: opacity 0.2s;
+        }
+
+        .print-instructions button:hover {
+            opacity: 0.9;
+        }
+
+        /* Slide layout */
+        .slide-page {
+            background: #FFFFFF;
+            padding: 20px 0 40px 0;
+            border-bottom: 1px dashed #DDD;
+            position: relative;
+        }
+
+        .slide-page:last-child {
+            border-bottom: none;
+        }
+
+        .slide-category {
+            color: var(--primary);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 9pt;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .slide-title {
+            font-family: var(--font-heading);
+            font-size: 24pt;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .slide-lead {
+            font-size: 12pt;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Layout grids & elements */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .info-card h3, .design-decision-card h3 {
+            font-family: var(--font-heading);
+            font-size: 13pt;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .info-card p {
+            font-size: 10pt;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .info-card.highlight {
+            background: linear-gradient(135deg, rgba(109, 59, 255, 0.05) 0%, rgba(109, 59, 255, 0.01) 100%);
+            border-color: var(--primary);
+        }
+
+        /* Pain/Solution Table */
+        .pain-solution-table {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row.header {
+            background: rgba(109, 59, 255, 0.1);
+            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table-row > div {
+            padding: 15px;
+        }
+
+        .pain-cell {
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 9.5pt;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .solution-cell {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 9.5pt;
+            color: var(--text-main);
+        }
+
+        .text-danger { color: #D32F2F; }
+        .text-success { color: #388E3C; }
+
+        /* Insight Banner */
+        .insight-banner {
+            display: flex;
+            gap: 15px;
+            background: rgba(255, 145, 0, 0.08);
+            border: 1px solid rgba(255, 145, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 10pt;
+        }
+
+        .banner-icon {
+            font-size: 18pt;
+        }
+
+        /* Stats */
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 18px 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-heading);
+            font-size: 24pt;
+            font-weight: 800;
+            color: #388E3C;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 9pt;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Journey Flow */
+        .journey-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .journey-step {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px 15px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .step-num {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            width: 26px;
+            height: 26px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 9pt;
+            color: #FFF;
+        }
+
+        .journey-step h4 {
+            font-family: var(--font-heading);
+            font-size: 11pt;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            margin-top: 5px;
+        }
+
+        .journey-step p {
+            font-size: 9pt;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .journey-arrow {
+            color: var(--text-muted);
+            font-size: 12pt;
+            opacity: 0.5;
+        }
+
+        /* Decision Cards */
+        .design-decision-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .card-icon {
+            width: 38px;
+            height: 38px;
+            background: rgba(109, 59, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 12pt;
+            margin-bottom: 12px;
+        }
+
+        .design-decision-card ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .design-decision-card li {
+            font-size: 9.5pt;
+            color: var(--text-muted);
+            line-height: 1.4;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .design-decision-card li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-size: 12pt;
+            line-height: 1;
+        }
+
+        /* Page Numbering Footer */
+        .page-footer-label {
+            display: none;
+        }
+
+        /* CSS Print Styles */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 20mm 15mm 20mm 15mm;
+            }
+            
+            body {
+                background-color: #FFFFFF;
+                color: #000000;
+            }
+
+            .print-instructions {
+                display: none !important;
+            }
+
+            .header-banner {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin-bottom: 0;
+            }
+
+            .slide-page {
+                display: block !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                padding-top: 30mm !important; /* Space for the fixed header */
+                border-bottom: none !important;
+            }
+
+            .page-footer-label {
+                display: block !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-top: 1px solid #DDD;
+                padding-top: 8px;
+                text-align: right;
+                font-family: var(--font-body);
+                font-size: 9pt;
+                color: #777;
+            }
+
+            .page-footer-label::after {
+                content: "Page " counter(page);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="print-container">
+        <!-- Interactive Help Banner (Hidden when printing) -->
+        <div class="print-instructions">
+            <div>
+                <i class="fa-solid fa-circle-info"></i> 
+                <strong>Print/Save PDF version:</strong> Click the button to launch the print dialog. In the print configurations, disable "Headers and footers" to keep pages clean from URLs, and enable "Background graphics".
+            </div>
+            <button onclick="window.print()"><i class="fa-solid fa-print"></i> Print to PDF</button>
+        </div>
+
+        <!-- Global Document Header (Shows on top of every page) -->
+        <header class="header-banner">
+            <span class="brand-name">HARU</span>
+            <span class="brand-badge">Design Challenge</span>
+        </header>
+
+        <!-- Slide 1 -->
+        <section class="slide-page">
+            <span class="slide-category">Redesign Proposal</span>
+            <h1 class="slide-title">Haru: Finance with Purpose and Zero Friction</h1>
+            <p class="slide-lead">Transforming raw numbers into intelligent decisions through automation and emotional support for the Ecuadorian market.</p>
+            
+            <div class="grid-2-col">
+                <div class="info-card">
+                    <h3>The Challenge</h3>
+                    <p>Help users understand their money without the friction of manual categorization and with truly actionable insights.</p>
+                </div>
+                <div class="info-card highlight">
+                    <h3>Our Vision</h3>
+                    <p>An app that doesn't feel like a ledger, but rather like an empathetic and intuitive financial copilot.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="slide-page">
+            <span class="slide-category">Context & Reasoning</span>
+            <h1 class="slide-title">What do we understand about Haru's users?</h1>
+            <p class="slide-lead">We analyzed the friction points detected in the initial research and proposed clear design hypotheses.</p>
+
+            <div class="pain-solution-table">
+                <div class="table-row header">
+                    <div>User Pain Point</div>
+                    <div>Hypothesis of Solution in Haru</div>
+                </div>
+                <div class="table-row">
+                    <div class="pain-cell">
+                        <i class="fa-solid fa-circle-xmark text-danger"></i>
+                        <span>"I struggle to understand where my money goes each month."</span>
+                    </div>
+                    <div class="solution-cell">
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <span><strong>Contextual Visualization:</strong> Clear visual grouping and narrative summaries (e.g. "You are doing 10% better than last week").</span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="pain-cell">
+                        <i class="fa-solid fa-circle-xmark text-danger"></i>
+                        <span>"I don't have the time or desire to manually categorize expenses."</span>
+                    </div>
+                    <div class="solution-cell">
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <span><strong>Auto-Categorization with Express Confirmation:</strong> The app does it for you and validates with simple 1-tap interactions.</span>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="pain-cell">
+                        <i class="fa-solid fa-circle-xmark text-danger"></i>
+                        <span>"I don't feel the app gives me useful insights, just numbers."</span>
+                    </div>
+                    <div class="solution-cell">
+                        <i class="fa-solid fa-circle-check text-success"></i>
+                        <span><strong>Financial Health Indicator & AI Copilot:</strong> Empathetic comments explaining what to do (e.g. "If you save $15 on entertainment, you will reach your goal").</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="slide-page">
+            <span class="slide-category">Lateral Thinking</span>
+            <h1 class="slide-title">Questioning the Financial Status Quo</h1>
+            <p class="slide-lead">Do users really need perfect pie charts and tedious manual bookkeeping?</p>
+            
+            <div class="insight-banner">
+                <div class="banner-icon">💡</div>
+                <div class="banner-content">
+                    <strong>Our Lateral Hypothesis:</strong> The user does not want to be an accountant. They want peace of mind. Categorization is not the end goal, it is just the tool. By automating 95% of the mental load and providing direct answers about daily spending power, we eliminate app churn.
+                </div>
+            </div>
+
+            <div class="grid-3-col">
+                <div class="stat-card">
+                    <div class="stat-num">95%</div>
+                    <div class="stat-label">Predictive auto-categorization optimized for Ecuadorian merchants.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">1-Tap</div>
+                    <div class="stat-label">Intuitive feedback loop to correct errors without friction.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">Narrative</div>
+                    <div class="stat-label">Replacing abstract charts with readable, actionable sentences.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4 -->
+        <section class="slide-page">
+            <span class="slide-category">User Journey & Flow</span>
+            <h1 class="slide-title">Friction-Free Flow</h1>
+            <p class="slide-lead">How the user reaches their diagnostic summary and takes steps to adjust their spending with zero effort.</p>
+
+            <div class="journey-flow">
+                <div class="journey-step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Smart Notification</h4>
+                        <p>The app detects a transaction and auto-categorizes it in the background.</p>
+                    </div>
+                </div>
+                <div class="journey-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="journey-step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Express Validation</h4>
+                        <p>The user confirms with a tap, or the app silently assumes it's correct over time.</p>
+                    </div>
+                </div>
+                <div class="journey-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="journey-step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Health Feedback</h4>
+                        <p>The dashboard updates dynamically, showing progress towards the savings target.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5 -->
+        <section class="slide-page">
+            <span class="slide-category">UX/UI Decisions</span>
+            <h1 class="slide-title">Emotional & Functional Aesthetics</h1>
+            <p class="slide-lead">We aim to project financial security through a modern, clean, and motivating interface.</p>
+
+            <div class="grid-2-col">
+                <div class="design-decision-card">
+                    <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
+                    <h3>UI Decisions</h3>
+                    <ul>
+                        <li><strong>Trust Palette:</strong> Deep purples, emerald greens for growth, and subtle accents for warnings.</li>
+                        <li><strong>Micro-animations:</strong> Smooth feedback animations on verification buttons to build satisfaction.</li>
+                        <li><strong>Information Cards:</strong> Glassmorphism layouts to add visual hierarchy and modern depth.</li>
+                    </ul>
+                </div>
+                <div class="design-decision-card">
+                    <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>UX Decisions</h3>
+                    <ul>
+                        <li><strong>Human Language:</strong> Translating cold figures to everyday milestones ("You have enough to go out this weekend!").</li>
+                        <li><strong>Focus on Free Margin:</strong> Highlighting free money after fixed expenses and savings goals to reduce financial anxiety.</li>
+                        <li><strong>Asynchronous Batching:</strong> Allowing incorrect categorizations to be fixed in batches whenever the user wishes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page footer numbering (Print only) -->
+    <div class="page-footer-label"></div>
+
+    <script>
+        // Automatically trigger print dialog when loaded with ?print=true parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('print') === 'true') {
+            window.onload = function() {
+                // Short timeout to ensure styles and fonts are fully loaded
+                setTimeout(function() {
+                    window.print();
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>
